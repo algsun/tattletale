@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.microwise.tattletale.dao.AlarmRecordMapper">
+    <resultMap id="BaseResultMap" type="com.microwise.tattletale.model.AlarmRecord">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="systemType" jdbcType="VARCHAR" property="systemtype"/>
+        <result column="sourceId" jdbcType="VARCHAR" property="sourceid"/>
+        <result column="alarmPointType" jdbcType="BIT" property="alarmpointtype"/>
+        <result column="alarmPointId" jdbcType="VARCHAR" property="alarmpointid"/>
+        <result column="factor" jdbcType="VARCHAR" property="factor"/>
+        <result column="alarmTime" jdbcType="TIMESTAMP" property="alarmtime"/>
+        <result column="state" jdbcType="BIT" property="state"/>
+        <result column="transactor" jdbcType="VARCHAR" property="transactor"/>
+        <result column="handleTime" jdbcType="TIMESTAMP" property="handletime"/>
+        <result column="handleMeasure" jdbcType="VARCHAR" property="handlemeasure"/>
+        <result column="notifier" jdbcType="VARCHAR" property="notifier"/>
+    </resultMap>
+
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.microwise.tattletale.dao.AlarmThresholdMapper">
+  <resultMap id="BaseResultMap" type="com.microwise.tattletale.model.AlarmThreshold">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="alarmStrategyId" jdbcType="VARCHAR" property="alarmstrategyid" />
+    <result column="sensorPhysicalId" jdbcType="INTEGER" property="sensorphysicalid" />
+    <result column="conditionType" jdbcType="INTEGER" property="conditiontype" />
+    <result column="target" jdbcType="REAL" property="target" />
+    <result column="floating" jdbcType="REAL" property="floating" />
+    <result column="showType" jdbcType="INTEGER" property="showtype" />
+  </resultMap>
+</mapper>

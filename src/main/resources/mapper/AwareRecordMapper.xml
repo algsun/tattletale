@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.microwise.tattletale.dao.AwareRecordMapper">
+    <resultMap id="BaseResultMap" type="com.microwise.tattletale.model.AwareRecord">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="alarm_record_id" jdbcType="VARCHAR" property="alarmRecordId"/>
+        <result column="aware_notifier" jdbcType="VARCHAR" property="awareNotifier"/>
+        <result column="aware_time" jdbcType="TIMESTAMP" property="awareTime"/>
+    </resultMap>
+    <select id="findAwareRecords" resultMap="BaseResultMap" parameterType="java.util.Map">
+        SELECT
+        w.id,
+        w.alarm_record_id,
+        w.aware_notifier,
+        w.aware_time
+        FROM
+        aware_record AS w
+        LEFT JOIN alarm_record AS l ON w.alarm_record_id = l.id
+        WHERE
+        w.aware_notifier = #{userId}
+        AND
+        l.sourceId = #{sourceId}
+    </select>
+    <!--模糊查询-->
+    <select id="findAwareRecordsBlurry" resultMap="BaseResultMap" parameterType="java.util.Map">
+        SELECT
+        w.id,
+        w.alarm_record_id,
+        w.aware_notifier,
+        w.aware_time
+        FROM
+        aware_record AS w
+        LEFT JOIN alarm_record AS l ON w.alarm_record_id = l.id
+        WHERE
+        w.aware_time BETWEEN #{begin} AND #{end}
+        AND
+        l.sourceId = #{sourceId}
+        <if test="alarmPoints != null and alarmPoints.size() > 0">
+            AND l.alarmPointId IN
+            <foreach collection="alarmPoints" item="alarmPoint" open="(" separator="," close=")">
+                #{alarmPoint}
+            </foreach>
+        </if>
+        <if test="users != null and users.size() > 0">
+            AND w.aware_notifier IN
+            <foreach collection="users" item="user" open="(" separator="," close=")">
+                #{user}
+            </foreach>
+        </if>
+    </select>
+</mapper>
